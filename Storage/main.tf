@@ -35,7 +35,6 @@ resource "azurerm_storage_account" "storage_account" {
 
 resource "azurerm_storage_container" "storage_container" {
   count = length(var.storage_accounts[count.index].containers)  // Corrected this line
-
   name                  = var.storage_accounts[count.index].containers[count.index].container_name  // Adjusted this line
   storage_account_name  = azurerm_storage_account.storage_account[count.index].name  // Adjusted this line
   container_access_type = var.storage_accounts[count.index].containers[count.index].container_access_type  // Adjusted this line
