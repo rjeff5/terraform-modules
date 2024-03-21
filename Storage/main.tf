@@ -9,3 +9,11 @@ resource "azurerm_storage_account" "storage_account" {
 
   # Other storage account settings
 }
+
+
+resource "azurerm_storage_container" "containers" {
+  count                = length(var.storage_accounts)
+  name                 = var.containers
+  storage_account_name = var.storage_accounts[count.index].storage_account_name
+  container_access_type = "private"
+}
