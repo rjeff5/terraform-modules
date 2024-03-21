@@ -19,8 +19,7 @@
 # }
 
 
-
-resource "azurerm_storage_account" "storage_account" {
+resource "azurerm_storage_account" "storage_accounts" {
   count = length(var.storage_accounts)
 
   name                     = var.storage_accounts[count.index].storage_account_name
@@ -30,12 +29,16 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type = var.storage_accounts[count.index].account_replication_type
 
   # Other storage account settings
+// Create storage containers dynamically for each storage account
+dynamic "azurerm_storage_container" {
+  for_each = {
+    for idx, account in var.storage_accounts : idx => account.containers
+  }
+
+  content {
+    name                  = azurerm_storage_account.storage_accounts[each.key].name
+    storage_account_name  = each.value.container_name
+    container_access_type = each.value.container_access_type
+  }
 }
-
-
-resource "azurerm_storage_container" "storage_container" {
-  count = length(var.storage_accounts[count.index].containers)  // Corrected this line
-  name                  = var.storage_accounts[count.index].containers[count.index].container_name  // Adjusted this line
-  storage_account_name  = azurerm_storage_account.storage_account[count.index].name  // Adjusted this line
-  container_access_type = var.storage_accounts[count.index].containers[count.index].container_access_type  // Adjusted this line
 }
