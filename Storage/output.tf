@@ -1,16 +1,18 @@
-# output "storage_account_id" {
-#   description = "ID of the storage account"
-#   value       = azurerm_storage_account.storage_account[*].id
-# }
+# modules/storage_account/output.tf
 
+output "storage_account_name" {
+  description = "The name of the created storage account"
+  value       = azurerm_storage_account.storage_account[*].name
+}
 
-# output "storage_account_name" {
-#   description = "Name of the storage account"
-#   value       = azurerm_storage_account.storage_account[*].name
-# }
+output "storage_account_id" {
+  description = "The ID of the created storage account"
+  value       = azurerm_storage_account.storage_account[*].id
+}
 
+output "primary_blob_endpoint" {
+  description = "The primary blob storage endpoint URL"
+  value       = azurerm_storage_account.storage_account[*].primary_blob_endpoint
+}
 
-# output "storage_account_connection_string" {
-#   description = "Connection string for the storage account"
-#   value       = "DefaultEndpointsProtocol=https;AccountName=${azurerm_storage_account.storage_account[*].name};AccountKey=${azurerm_storage_account.storage_account[*].primary_access_key};EndpointSuffix=core.windows.net"
-# }
+# Add more outputs as needed
