@@ -3,5 +3,5 @@ variable "containers"{
 }
 
 variable "storage_accounts"{
-    list(string)
+    type = list(string)
 }
