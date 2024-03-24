@@ -23,9 +23,3 @@ resource "azurerm_storage_account" "storage_accounts" {
   account_tier             = var.storage_accounts[count.index].account_tier
   account_replication_type = var.storage_accounts[count.index].account_replication_type
 }
-
-resource "azurerm_storage_container" "containers" {
-  name                  = var.containers
-  storage_account_name  = azurerm_storage_account.storage_accounts[each.key].name
-  container_access_type = "private"
-}
