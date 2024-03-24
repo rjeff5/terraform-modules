@@ -16,7 +16,6 @@
 
 resource "azurerm_storage_account" "storage_accounts" {
   count = length(var.storage_accounts)
-
   name                     = var.storage_accounts[count.index].storage_account_name
   resource_group_name      = var.storage_accounts[count.index].resource_group_name
   location                 = var.storage_accounts[count.index].location

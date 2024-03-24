@@ -1,3 +1,3 @@
 variable "containers" {
-  type = map(list(string))
+    type = list(string)
 }
