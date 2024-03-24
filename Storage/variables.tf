@@ -17,10 +17,6 @@ variable "storage_accounts" {
     location                  = string
     account_tier              = string
     account_replication_type  = string
-    containers                = list(object({
-      container_name         = string
-      container_access_type  = string
-    }))
     // Add more properties as needed for storage account configurations
   }))
 }
