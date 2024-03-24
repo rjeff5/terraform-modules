@@ -1,7 +1,3 @@
-variable "containers"{
-    type = list(string)
-}
-
-variable "storage_accounts"{
-    type = list(string)
+variable "containers" {
+  type = map(list(string))
 }
