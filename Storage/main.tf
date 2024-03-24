@@ -25,11 +25,7 @@ resource "azurerm_storage_account" "storage_accounts" {
 }
 
 resource "azurerm_storage_container" "containers" {
-  for_each = {
-    for idx, account in azurerm_storage_account.storage_accounts : idx => account.containers
-  }
-
-  name                  = each.value.container_name
+  name                  = var.containers
   storage_account_name  = azurerm_storage_account.storage_accounts[each.key].name
   container_access_type = "private"
 }
