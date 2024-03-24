@@ -2,4 +2,6 @@ variable "containers"{
     type = list(string)
 }
 
-variable "storage_accounts"{}
+variable "storage_accounts"{
+    list(string)
+}
