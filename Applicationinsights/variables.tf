@@ -6,3 +6,5 @@
   }
 
   variable "app_insights_name"{}
+
+  variable "application_type"{}
